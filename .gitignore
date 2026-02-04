@@ -11,6 +11,7 @@
 
 # IDE files
 /.idea/
+/.idea
 /*.iml
 /.vscode/
 
