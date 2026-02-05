@@ -1,0 +1,52 @@
+body {
+  font-family: "Inter", sans-serif;
+  letter-spacing: 1px;
+}
+
+.brand-font {
+  font-family: "Cinzel", serif;
+  letter-spacing: 1px;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+/* Backgrounds */
+.theme-bg-primary {
+  background-color: #072685 !important;
+}
+
+.theme-bg-primary-light {
+  background-color: #e4e9f7 !important;
+}
+
+.theme-bg-white {
+  background-color: #ffffff !important;
+}
+
+/* Text */
+.theme-text-primary {
+  color: #072685 !important;
+}
+
+.theme-text-white {
+  color: #ffffff !important;
+}
+
+.theme-text-white-soft {
+  color: #e9edfa !important;
+}
+
+/* Buttons */
+.theme-btn-primary {
+  background-color: #072685 !important;
+  color: #ffffff !important;
+  border: none;
+}
+
+.theme-btn-white {
+  background-color: #ffffff !important;
+  color: #072685;
+  border: none;
+}
