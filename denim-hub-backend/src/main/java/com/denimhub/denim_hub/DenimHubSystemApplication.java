@@ -8,6 +8,8 @@ public class DenimHubSystemApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DenimHubSystemApplication.class, args);
+
+        System.out.println("Hello From DenimHubSystemApplication");
 	}
 
 }
