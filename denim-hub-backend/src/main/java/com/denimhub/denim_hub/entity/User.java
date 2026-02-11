@@ -9,10 +9,10 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
-@Data               // getters, setters, toString
+@Data              
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder             // optional but powerful
+@Builder             
 public class User {
 
     @Id

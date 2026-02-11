@@ -72,7 +72,6 @@ function Billing() {
       <div className="flex-grow-1 p-4 overflow-auto">
         <h3 className="mb-4">Billing</h3>
 
-        {/* CUSTOMER DETAILS */}
         <div className="card mb-4 shadow-sm">
           <div className="card-body">
             <h5 className="mb-3">Customer Details</h5>

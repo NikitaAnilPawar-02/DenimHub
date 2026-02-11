@@ -107,7 +107,6 @@ function BillsReport() {
           </div>
         </div>
 
-        {/* SUMMARY */}
         <div className="row g-3 mb-4">
           <div className="col-md-4">
             <div className="card p-3 shadow-sm">
