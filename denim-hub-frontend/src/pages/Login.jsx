@@ -7,7 +7,6 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // later: API call
     console.log("Username:", username);
     console.log("Password:", password);
   };

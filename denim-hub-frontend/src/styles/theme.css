@@ -50,3 +50,7 @@ body {
   color: #072685;
   border: none;
 }
+
+.theme-bg-navy-light {
+  scroll-behavior: smooth;
+}

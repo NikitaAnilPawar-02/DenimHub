@@ -8,8 +8,6 @@ function ChangePassword() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // later: API call
     console.log("Username:", username);
     console.log("Current Password:", currentPassword);
     console.log("New Password:", newPassword);
@@ -43,7 +41,6 @@ function ChangePassword() {
             />
           </div>
 
-          {/* New Password */}
           <div className="mb-3">
             <label className="form-label">New Password</label>
             <input
