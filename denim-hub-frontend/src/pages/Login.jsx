@@ -1,14 +1,43 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+   const navigate = useNavigate(); 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async  (e) => {
     e.preventDefault();
-    console.log("Username:", username);
-    console.log("Password:", password);
+    try {
+    const response = await fetch("http://localhost:8080/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (data.message === "Login successful") {
+      alert("Welcome " + data.role);
+
+      // Save role in localStorage
+      localStorage.setItem("role", data.role);
+
+      // Redirect
+      navigate("/dashboard");
+    } else {
+      alert("Invalid Credentials");
+    }
+
+  } catch (error) {
+    console.error(error);
+  }
   };
 
   return (
