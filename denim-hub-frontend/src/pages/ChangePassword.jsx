@@ -1,16 +1,39 @@
+// src/pages/ChangePassword.jsx
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function ChangePassword() {
   const [username, setUsername] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [message, setMessage] = useState(""); // success or error
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Username:", username);
-    console.log("Current Password:", currentPassword);
-    console.log("New Password:", newPassword);
+    setMessage("");
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/auth/change-password",
+        {
+          username,
+          oldPassword: currentPassword,
+          newPassword,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      setMessage(response.data); // "Password changed successfully"
+      setUsername("");
+      setCurrentPassword("");
+      setNewPassword("");
+    } catch (error) {
+      console.error("Change Password Error:", error.response || error);
+      setMessage(error.response?.data || "Something went wrong");
+    }
   };
 
   return (
@@ -55,6 +78,15 @@ function ChangePassword() {
           <button type="submit" className="btn theme-btn-primary w-100 fw-bold">
             Update Password
           </button>
+
+          {message && (
+            <p
+              className="mt-3 text-center"
+              style={{ color: message.includes("success") ? "green" : "red" }}
+            >
+              {message}
+            </p>
+          )}
 
           <div className="text-end mt-3">
             <Link

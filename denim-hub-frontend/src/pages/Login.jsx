@@ -1,43 +1,44 @@
+// src/pages/Login.jsx
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-   const navigate = useNavigate(); 
+  const [errorMsg, setErrorMsg] = useState("");
+  const navigate = useNavigate();
 
-  const handleSubmit = async  (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMsg("");
+
     try {
-    const response = await fetch("http://localhost:8080/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    });
+      const response = await axios.post(
+        "http://localhost:8080/api/auth/login",
+        { username, password },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
-    const data = await response.json();
+      // Check backend response
+      if (response.data.message === "Login successful") {
+        // Save role and username
+        localStorage.setItem("role", response.data.role);
+        localStorage.setItem("username", username);
 
-    if (data.message === "Login successful") {
-      alert("Welcome " + data.role);
+        alert("Welcome " + response.data.role);
 
-      // Save role in localStorage
-      localStorage.setItem("role", data.role);
-
-      // Redirect
-      navigate("/dashboard");
-    } else {
-      alert("Invalid Credentials");
+        // Redirect to dashboard
+        navigate("/dashboard");
+      } else {
+        setErrorMsg("Invalid Credentials");
+      }
+    } catch (error) {
+      console.error("Login Error:", error.response || error);
+      setErrorMsg(error.response?.data?.message || "Something went wrong");
     }
-
-  } catch (error) {
-    console.error(error);
-  }
   };
 
   return (
@@ -68,9 +69,14 @@ function Login() {
             />
           </div>
 
+          {errorMsg && (
+            <p className="text-danger text-center mb-3">{errorMsg}</p>
+          )}
+
           <button type="submit" className="btn theme-btn-primary w-100 fw-bold">
             Login
           </button>
+
           <div className="text-end mt-3">
             <Link
               to="/changePassword"

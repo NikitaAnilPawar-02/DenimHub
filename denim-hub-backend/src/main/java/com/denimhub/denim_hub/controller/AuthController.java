@@ -1,9 +1,11 @@
 package com.denimhub.denim_hub.controller;
 
+import com.denimhub.denim_hub.DTO.ChangePasswordRequest;
 import com.denimhub.denim_hub.DTO.LoginRequest;
 import com.denimhub.denim_hub.DTO.LoginResponse;
 import com.denimhub.denim_hub.entity.Users;
 import com.denimhub.denim_hub.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -41,11 +43,18 @@ public class AuthController {
     }
     // CHANGE PASSWORD API
     @PostMapping("/change-password")
-    public String changePassword(@RequestParam String username,
-                                 @RequestParam String oldPassword,
-                                 @RequestParam String newPassword) {
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest request) {
+        try {
+            userService.changePassword(
+                    request.getUsername(),
+                    request.getOldPassword(),
+                    request.getNewPassword()
+            );
 
-        userService.changePassword(username, oldPassword, newPassword);
-        return "✅ Password changed successfully";
+            return ResponseEntity.ok("Password changed successfully");
+
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }
