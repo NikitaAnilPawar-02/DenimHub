@@ -22,7 +22,11 @@ function Sidebar() {
   return (
     <div
       className="theme-bg-primary text-white vh-100 d-flex flex-column"
-      style={{ width: "250px" }}
+      style={{
+          width: "250px",
+          minWidth: "250px",
+          flexShrink: 0
+        }}
     >
       <div className="p-3 text-center border-bottom">
         <div className="d-flex align-items-center justify-content-center mb-2">
@@ -37,9 +41,9 @@ function Sidebar() {
               marginRight: "10px"
             }} 
           />
-          <h4 className="mb-0">Denim Hub</h4>
+          <h4 className="mb-0">DenimHub</h4>
         </div>
-        <small className="text-light">Inventory System</small>
+        <small className="text-light">Inventory & Billing System</small>
       </div>
 
       <ul className="nav nav-pills flex-column gap-2 p-3 flex-grow-1">

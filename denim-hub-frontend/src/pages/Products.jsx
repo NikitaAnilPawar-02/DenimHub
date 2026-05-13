@@ -315,10 +315,17 @@ function Products() {
                             </span>
                           </td>
                           <td>
-                            <FaEye className="text-primary me-2" style={{ cursor: "pointer" }} onClick={() => handleViewClick(product.id)} title="View" />
-                            <FaEdit className="text-warning me-2" style={{ cursor: "pointer" }} onClick={() => handleEditClick(product)} title="Edit" />
-                            <FaTrash className="text-danger" style={{ cursor: "pointer" }} onClick={() => handleDeleteClick(product.id)} title="Delete" />
-                           </td>
+                            <div className="d-flex gap-2">
+                              <button className="btn btn-sm btn-outline-primary" onClick={() => handleViewClick(product.id)}>
+                                <FaEye />
+                              </button>
+                              <button className="btn btn-sm btn-outline-warning" onClick={() => handleEditClick(product)}>
+                                <FaEdit />
+                              </button>
+                              <button className="btn btn-sm btn-outline-danger" onClick={() => handleDeleteClick(product.id)}>
+                                <FaTrash />
+                              </button>
+                            </div></td>
                         </tr>
                       ))
                     ) : (
@@ -351,10 +358,8 @@ function Products() {
                     <label className="form-label">Category</label>
                     <select className="form-select" name="category" value={editProduct.category || ""} onChange={handleEditChange}>
                       <option value="">Select Category</option>
-                      <option value="Jeans">Jeans</option><option value="Denim Shirts">Denim Shirts</option>
-                      <option value="Jackets">Jackets</option><option value="Shorts">Shorts</option>
-                      <option value="Skirts">Skirts</option><option value="Dresses">Dresses</option>
-                      <option value="Accessories">Accessories</option>
+                      <option value="Jeans">Jeans</option><option value="Shirts">Shirts</option>
+                      <option value="Jackets">Jackets</option><option value="Accessories">Accessories</option>
                     </select>
                   </div>
                   <div className="col-md-6">

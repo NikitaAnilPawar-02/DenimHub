@@ -220,11 +220,8 @@ function AddProduct() {
                     >
                       <option value="">Select Category</option>
                       <option value="Jeans">Jeans</option>
-                      <option value="Denim Shirts">Denim Shirts</option>
+                      <option value="Shirts">Shirts</option>
                       <option value="Jackets">Jackets</option>
-                      <option value="Shorts">Shorts</option>
-                      <option value="Skirts">Skirts</option>
-                      <option value="Dresses">Dresses</option>
                       <option value="Accessories">Accessories</option>
                     </select>
                   </div>

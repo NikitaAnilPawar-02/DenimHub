@@ -169,18 +169,35 @@ function Customers() {
                           </td>
                           <td>₹{(customer.totalSpent || 0).toFixed(2)}</td>
                           <td>{customer.createdAt ? new Date(customer.createdAt).toLocaleDateString() : '-'}</td>
-                          <td className="text-center">
-                           <FaEye
-  className="text-primary me-3 cursor-pointer"
-  style={{ cursor: 'pointer' }}
-  onClick={() => navigate(`/customers/view/${customer.id}`)}
-  title="View Details"
-/>
-                            <FaEdit className="text-warning me-3 cursor-pointer" style={{ cursor: 'pointer' }}
-                              onClick={() => handleEditClick(customer)} title="Edit Customer" />
-                            <FaTrash className="text-danger cursor-pointer" style={{ cursor: 'pointer' }}
-                              onClick={() => handleDeleteClick(customer.id)} title="Delete Customer" />
-                          </td>
+                         <td style={{ whiteSpace: "nowrap" }}>
+                           <div className="d-flex justify-content-center gap-2">
+
+                             <button
+                               className="btn btn-sm btn-outline-primary"
+                               onClick={() => navigate(`/customers/view/${customer.id}`)}
+                               title="View Details"
+                             >
+                               <FaEye />
+                             </button>
+
+                             <button
+                               className="btn btn-sm btn-outline-warning"
+                               onClick={() => handleEditClick(customer)}
+                               title="Edit Customer"
+                             >
+                               <FaEdit />
+                             </button>
+
+                             <button
+                               className="btn btn-sm btn-outline-danger"
+                               onClick={() => handleDeleteClick(customer.id)}
+                               title="Delete Customer"
+                             >
+                               <FaTrash />
+                             </button>
+
+                           </div>
+                         </td>
                         </tr>
                       ))
                     ) : (
