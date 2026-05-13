@@ -1,40 +1,103 @@
 import "./styles/theme.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute";
 import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
 import ChangePassword from "./pages/ChangePassword";
 import Dashboard from "./pages/Dashboard";
 import Products from "./pages/Products";
+import AddProduct from "./pages/AddProduct";
+import ViewProduct from "./pages/ViewProduct";
 import Billing from "./pages/Billing";
 import Customers from "./pages/Customers";
+import CustomerView from "./pages/CustomerView";
 import Inventory from "./pages/Inventory";
 import SalesReport from "./pages/SalesReport";
 import BillsReport from "./pages/BillsReport";
 import ReportsAnalytics from "./pages/ReportsAnalytics";
-import AddProduct from "./pages/AddProduct";
-import ViewProduct from "./pages/ViewProduct";
 import Coupons from "./pages/Coupons";
-import CustomerView from "./pages/CustomerView";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Public Routes - No Login Required */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/changePassword" element={<ChangePassword />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/add" element={<AddProduct />} />
-        <Route path="/products/view/:id" element={<ViewProduct />} />
-        <Route path="/billing" element={<Billing />} />
-        <Route path="/customers" element={<Customers />} />
-        <Route path="/inventory" element={<Inventory />} />
-        <Route path="/salesReport" element={<SalesReport />} />
-        <Route path="/billsReport" element={<BillsReport />} />
-        <Route path="/reportsAnalytics" element={<ReportsAnalytics />} />
-        <Route path="/coupons" element={<Coupons />} />
-        <Route path="/customers/view/:id" element={<CustomerView />} />
+        
+        {/* Protected Routes - Login Required */}
+        <Route path="/dashboard" element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/products" element={
+          <ProtectedRoute>
+            <Products />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/products/add" element={
+          <ProtectedRoute>
+            <AddProduct />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/products/view/:id" element={
+          <ProtectedRoute>
+            <ViewProduct />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/billing" element={
+          <ProtectedRoute>
+            <Billing />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/customers" element={
+          <ProtectedRoute>
+            <Customers />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/customers/view/:id" element={
+          <ProtectedRoute>
+            <CustomerView />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/inventory" element={
+          <ProtectedRoute>
+            <Inventory />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/salesReport" element={
+          <ProtectedRoute>
+            <SalesReport />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/billsReport" element={
+          <ProtectedRoute>
+            <BillsReport />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/reportsAnalytics" element={
+          <ProtectedRoute>
+            <ReportsAnalytics />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/coupons" element={
+          <ProtectedRoute>
+            <Coupons />
+          </ProtectedRoute>
+        } />
       </Routes>
     </BrowserRouter>
   );

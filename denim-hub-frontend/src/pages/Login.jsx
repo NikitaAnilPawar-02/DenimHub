@@ -24,6 +24,9 @@ function Login() {
 
       // Check backend response
       if (response.data.message === "Login successful") {
+        // Clear any old data first
+  localStorage.removeItem("role");
+  localStorage.removeItem("username");
         // Save role and username
         localStorage.setItem("role", response.data.role);
         localStorage.setItem("username", username);

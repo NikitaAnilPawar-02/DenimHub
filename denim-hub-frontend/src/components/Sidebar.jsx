@@ -117,9 +117,16 @@ function Sidebar() {
       </ul>
 
       <div className="p-3 border-top">
-        <NavLink className="nav-link text-white" to="/login">
-          <FaSignOutAlt className="me-2" />
-          Logout
+      <NavLink 
+  className="nav-link text-white" 
+  to="/login" 
+  onClick={() => {
+    localStorage.removeItem("role");
+    localStorage.removeItem("username");
+  }}
+>
+  <FaSignOutAlt className="me-2" />
+  Logout
         </NavLink>
       </div>
     </div>
